@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fabrice Niyokwizerwa — Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #ffffff;
+      color: #333333;
+      font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    header h1 {
+      font-size: 28px;
+      font-weight: normal;
+      color: #000000;
+      margin-bottom: 5px;
+    }
+
+    .subtitle {
+      color: #666666;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .socials {
+      font-size: 14px;
+    }
+
+    .socials .sep {
+      color: #999999;
+      margin: 0 6px;
+    }
+
+    a {
+      color: #0563c1;
+      text-decoration: underline;
+    }
+
+    a:hover {
+      color: #054d9a;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #cccccc;
+      margin: 25px 0;
+    }
+
+    section {
+      margin-bottom: 25px;
+    }
+
+    h2 {
+      font-size: 18px;
+      font-weight: normal;
+      color: #2e74b5;
+      margin-bottom: 12px;
+    }
+
+    p {
+      text-align: justify;
+      margin-bottom: 12px;
+    }
+
+    .loading {
+      color: #666666;
+      font-style: italic;
+      text-align: left;
+    }
+
+    .error-note {
+      color: #666666;
+      font-size: 14px;
+      font-style: italic;
+      text-align: left;
+    }
+
+    .project {
+      margin-bottom: 20px;
+    }
+
+    .project-header {
+      font-weight: 600;
+      color: #000000;
+      margin-bottom: 4px;
+    }
+
+    .project-lang {
+      color: #666666;
+      font-weight: normal;
+    }
+
+    .project-desc {
+      color: #555555;
+      margin-bottom: 6px;
+      text-align: justify;
+    }
+
+    .project-link {
+      font-size: 14px;
+    }
+
+    footer {
+      text-align: center;
+      color: #999999;
+      font-size: 12px;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px 16px;
+      }
+
+      header h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Fabrice Niyokwizerwa</h1>
+      <p class="subtitle">Full-Stack AI Engineer | Kigali, Rwanda</p>
+      <p class="socials">
+        <a href="https://github.com/Codinglone" target="_blank">GitHub</a>
+        <span class="sep">|</span>
+        <a href="https://linkedin.com/in/fabrice-niyokwizerwa" target="_blank">LinkedIn</a>
+        <span class="sep">|</span>
+        <a href="mailto:codinglone@gmail.com">Email</a>
+      </p>
+    </header>
+
+    <hr>
+
+    <section id="about">
+      <h2>About</h2>
+      <p>
+        I'm a full-stack AI Engineer based in Rwanda, building systems for languages the world tends to ignore.
+        By day, I work on STT/TTS pipelines and data collection infrastructure for low-resource African languages
+        at Digital Umuganda — fine-tuning speech models, shipping inference systems in production, and solving
+        problems most engineers never encounter. Off the clock, I tinker with distributed systems, low-level code,
+        and AI experiments. I approach everything with curiosity, humor, and a systems-oriented mindset.
+      </p>
+    </section>
+
+    <section id="projects">
+      <h2>Featured Projects</h2>
+      <div id="projects-list">
+        <p class="loading">Loading projects...</p>
+      </div>
+    </section>
+
+    <hr>
+
+    <footer>
+      <p>&copy; 2025 — Built with simplicity in mind</p>
+    </footer>
+  </div>
+
+  <script>
+    (async function() {
+      const container = document.getElementById('projects-list');
+
+      function createProjectCard(repo) {
+        const lang = repo.language || 'N/A';
+        return `
+          <div class="project">
+            <p class="project-header">${escapeHtml(repo.name)} <span class="project-lang">— ${escapeHtml(lang)}</span></p>
+            <p class="project-desc">${escapeHtml(repo.description || 'No description provided.')}</p>
+            <p><a href="${escapeHtml(repo.url)}" target="_blank" class="project-link">View on GitHub &rarr;</a></p>
+          </div>
+        `;
+      }
+
+      function escapeHtml(text) {
+        if (!text) return '';
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+      }
+
+      try {
+        const response = await fetch('projects.json');
+        if (!response.ok) {
+          throw new Error('Failed to load projects.json');
+        }
+        const projects = await response.json();
+
+        if (!Array.isArray(projects) || projects.length === 0) {
+          throw new Error('No projects found');
+        }
+
+        container.innerHTML = projects.map(createProjectCard).join('');
+      } catch (e) {
+        console.warn('Projects load failed:', e);
+        container.innerHTML = `
+          <p class="error-note">
+            Projects loading... In the meantime, find me on
+            <a href="https://github.com/Codinglone" target="_blank">GitHub</a> and
+            <a href="https://linkedin.com/in/fabrice-niyokwizerwa" target="_blank">LinkedIn</a>.
+          </p>
+        `;
+      }
+    })();
+  </script>
+</body>
+</html>

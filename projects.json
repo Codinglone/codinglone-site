@@ -1,0 +1,44 @@
+[
+  {
+    "name": "sonic-gate",
+    "description": "CLI-first deterministic audio/video quality gate. Catches corrupted, invalid, or low-quality media before it reaches humans.",
+    "url": "https://github.com/Codinglone/sonic-gate",
+    "language": "Python",
+    "pinned": true
+  },
+  {
+    "name": "aether",
+    "description": "Local-first, Linux-native computer-use agent with optional cloud vision.",
+    "url": "https://github.com/Codinglone/aether",
+    "language": "Python",
+    "pinned": true
+  },
+  {
+    "name": "mcp-context-bridge",
+    "description": "A unified context layer that connects your local data — repositories, documents, remote machines, and notes — to LLM interfaces through the Model Context Protocol (MCP).",
+    "url": "https://github.com/Codinglone/mcp-context-bridge",
+    "language": "Python",
+    "pinned": true
+  },
+  {
+    "name": "SipForge",
+    "description": "A distributed voice communication platform that integrates Asterisk telephony with AI-powered chatbots for English and Kinyarwanda languages.",
+    "url": "https://github.com/Codinglone/SipForge",
+    "language": "Python",
+    "pinned": true
+  },
+  {
+    "name": "Kivu Ride",
+    "description": "A ride-hailing platform for iOS and Android with a FastAPI backend, React admin dashboard, and Expo mobile app. Features JWT auth, trip-matching, and DigitalOcean Spaces storage.",
+    "url": "https://github.com/Codinglone/kivu-ride",
+    "language": "Python / TypeScript",
+    "pinned": false
+  },
+  {
+    "name": "Lidata",
+    "description": "A digital life assistant with FastAPI backend, Beanie ODM for MongoDB, and live PayPal webhook integration for subscription management.",
+    "url": "https://github.com/Codinglone/lidata",
+    "language": "Python",
+    "pinned": false
+  }
+]
