@@ -30,14 +30,14 @@
   {
     "name": "Kivu Ride",
     "description": "A ride-hailing platform for iOS and Android with a FastAPI backend, React admin dashboard, and Expo mobile app. Features JWT auth, trip-matching, and DigitalOcean Spaces storage.",
-    "url": "https://github.com/Codinglone/kivu-ride",
+    "url": "https://play.google.com/store/search?q=kivu+ride&c=apps&hl=en_US",
     "language": "Python / TypeScript",
     "pinned": false
   },
   {
     "name": "Lidata",
     "description": "A digital life assistant with FastAPI backend, Beanie ODM for MongoDB, and live PayPal webhook integration for subscription management.",
-    "url": "https://github.com/Codinglone/lidata",
+    "url": "https://play.google.com/store/apps/details?id=com.lidata.app&hl=en_US",
     "language": "Python",
     "pinned": false
   }
